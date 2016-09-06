@@ -1,0 +1,6 @@
+{
+  "name": "Galaxy Training",
+  "tagline": "Collection of training resources for Galaxy courses",
+  "body": "### Welcome to our Galaxy training pages.\r\n\r\nHere you can find a collection of training resources for Galaxy courses.\r\n\r\n * [Reads pre-processing, alignment and visualization](preprocessing.md)\r\n * [Exome Analysis using Galaxy](exome-sequencing.md)\r\n * [Advanced Exome Analysis using Galaxy](exome_sequencing_advanced.md)\r\n\r\n\r\n\r\n### Datasets\r\n * [Training material for the course \"Exome analysis with GALAXY\"](https://zenodo.org/record/61377)\r\n\r\n### Authors and Contributors\r\n- Paolo Uva @puva\r\n- Gianmauro Cuccuru @gmauro\r\n- Massimiliano Orsini\r\n- Andrea Sbardellati\r\n\r\n\r\n### Contributing\r\n\r\nIf you've created a tutorial, slides or any other kind of material you think should be shared through this repository you can:\r\n\r\n1. Fork this repository.\r\n2. Add your content on the appropriate page.\r\n3. Commit your changes.\r\n4. Submit a pull request.",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
