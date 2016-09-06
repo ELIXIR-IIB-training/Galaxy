@@ -1,0 +1,11 @@
+# Site settings
+title: Galaxy Training
+email:
+description: Community Site
+baseurl:
+url:
+twitter_username:
+github_username:  gmauro
+
+# Build settings
+markdown: kramdown
