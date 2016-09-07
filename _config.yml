@@ -6,6 +6,8 @@ baseurl:
 url:
 twitter_username:
 github_username:  gmauro
+pages_url: https://gmauro.github.io/galaxy-training
+github_url: https://github.com/gmauro/galaxy-training
 
 # Build settings
 markdown: kramdown
