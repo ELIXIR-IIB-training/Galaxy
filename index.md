@@ -9,8 +9,8 @@ title: Frontpage
 Here you can find a collection of training resources for Galaxy courses.
 
  * [Reads pre-processing, alignment and visualization](preprocessing.html)
- * Exome Analysis using Galaxy
- * Advanced Exome Analysis using Galaxy
+ * [Exome Analysis](exome_analysis.html)
+ * [Advanced Exome Analysis](exome_analysis_advanced.html)
 
 ### Datasets
 
