@@ -27,13 +27,13 @@ The files used during this session are contained into the **Quality control** da
 
 Select **Data libraries** from the **Share Data** menu as shown in the figure below.
 
-![Import data](//galaxy-training/images/preprocessing/shared_data.png)
+![Import data](/galaxy-training/images/preprocessing/shared_data.png)
 
 
 Click on **Hands-on workshop** to get a list of the available files. Expand the Quality control dataset
 and select the files containing the paired reads **''input_mate1.fastq**'' and **''input_mate2.fastq**''.
 
-![QC dataset](//galaxy-training/images/preprocessing/shared_data.png)
+![QC dataset](/galaxy-training/images/preprocessing/shared_data.png)
 
 Locate the import button at the bottom of the page, select **import to current history** from the drop
 down menu and click **Go**
