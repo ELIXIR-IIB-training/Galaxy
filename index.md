@@ -14,6 +14,7 @@ Here you can find a collection of training resources for Galaxy courses.
 
 ### Datasets
 
+ * [Training material for the "Pre-processing tutorial"](data/preprocessing.tar.gz)
  * [Training material for the course "Exome analysis with GALAXY"](https://zenodo.org/record/61377)
 
 ### Authors and Contributors
