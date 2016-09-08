@@ -4,9 +4,6 @@ layout: default
 title: Basic
 ---
 
-'''"The first thing you should try" Tutorial'''
-
-
 # Background
 Suppose you get the following question: 
 > "Mom (or Dad) ... Which coding exon has the highest number of single nucleotide polymorphisms on chromosome 22?".  
