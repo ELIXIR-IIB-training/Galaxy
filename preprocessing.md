@@ -15,7 +15,7 @@ Click on the history menu icon on the right column.
 Select _Create New_ and rename it _sequence_align_ by clicking on the history name.  
 If the current history is already empty, just rename it.
 
-<img src="/galaxy-training/images/preprocessing/create_history.png" title="New history" width="600" height="500" >
+<img src="images/preprocessing/create_history.png" title="New history" width="600" height="500" >
 
 
 ## Step 2: Import read files 
@@ -27,7 +27,7 @@ The files used during this session are contained into the **Quality control** da
 
 Select **Data libraries** from the **Share Data** menu as shown in the figure below.
 
-![Import data](/galaxy-training/images/preprocessing/shared_data.png)
+![Import data](images/preprocessing/shared_data.png)
 
 
 Click on **Hands-on workshop** to get a list of the available files. Expand the Quality control dataset
