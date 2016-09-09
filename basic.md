@@ -14,6 +14,7 @@ You think to yourself "_Wow! This is a simple question ... I know exactly where 
 
 ## Create an account or Log in to orione.crs4.it 
 Connect to [{{ site.galaxy_url }}]({{ site.galaxy_url }}), go to the User link at the top of Galaxy interface and choose:
+ 
  * **Login**, if you have an account. Enter your credentials and you're in!
  * **Register**, if you don't have yet an account. Put on the "create users" form your email, a password and a public name and then log in.
 
@@ -28,6 +29,7 @@ You will see Galaxy's middle pane change to looks like this:
 ![UCSC genes](images/basic/ucscGenes.png)
 
 Make sure that your settings are exactly the same as shown on the screen, in particular:
+ 
  * ***region*** you should select **position** and write **chr22** in the corresponding text field 
  * _**output format**_ should be set to **BED - browser extensible data** 
  * in _**Send output to**_ should be checked the option **Galaxy**  
@@ -45,6 +47,7 @@ It will go through grey (preparing) and yellow (running) states to become green.
 ## Getting SNPs from UCSC 
 Now is the time to obtain SNP data. This is done almost exactly the same way. 
 First thing we will do is to again click on  "**Get Data** -> **UCSC Main table browser**" tool, but now change:
+ 
  * _**group**_ to **Variation** 
  * **_track_** to **All SNPs(147)**, 
  * _**region**_ to **position** with **chr22** in the corresponding text field 
