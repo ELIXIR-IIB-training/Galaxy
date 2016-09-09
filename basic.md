@@ -6,13 +6,14 @@ title: Basic
 
 # Background
 Suppose you get the following question: 
+
 > "Mom (or Dad) ... Which coding exon has the highest number of single nucleotide polymorphisms on chromosome 22?".  
 
 You think to yourself "_Wow! This is a simple question ... I know exactly where the data is (at UCSC) but how do I actually compute this?_" The truth is, there is really no straightforward way of answering this question in a time frame comparable to the attention span of a 7-year-old. Well ... actually there is and it is called Galaxy. So let's try it...
 
 # Setup 
 
-## Create an account or Log in to orione.crs4.it 
+## Create an account or Log in to the Galaxy server
 Connect to [{{ site.galaxy_url }}]({{ site.galaxy_url }}), go to the User link at the top of Galaxy interface and choose:
  
  * **Login**, if you have an account. Enter your credentials and you're in!
@@ -23,8 +24,7 @@ From the _**User**_ menu at the top, choose **Preferences** and then **Manage yo
 
 ## Getting coding exons from UCSC 
 First thing we will do is to obtain data from UCSC by clicking "**Get Data** -> **UCSC Main table browser**" on the tools column.
-You will see Galaxy's middle pane change to looks like this:
-
+You will see UCSC Table Browser interface appearing in your browser window:
 
 ![UCSC genes](images/basic/ucscGenes.png)
 
@@ -66,7 +66,7 @@ where you need to make sure that **Whole Gene** is selected ("Whole Gene" here r
 Now we will rename the two history items to **Exons** and **SNPs** by clicking on the Pencil icon adjacent to each item. In the same manner, we will rename history to **Galaxy 101** (or whatever you prefer) by clicking on **Unnamed history**.
 
 ## Getting data from a Library 
-Some files have been also stored in a data library for you. On the upper panel select _**Shared Data**_ > _**Data Libraries**_", then click on the **Basic** folder. Select all the bed files and then import them in the current history.
+Some files have been also stored in a data library for you. On the upper panel select _**Shared Data**_ > _**Data Libraries**_", then click on the **Basic** folder and select all the bed files to then import them in the current history.
 
 # Finding the exon with the highest number of SNPs 
 
@@ -99,7 +99,7 @@ To see which exon has the highest number of SNPs we can simply sort the dataset 
 
 ![Group](images/basic/sort.png)
 
-This will generate the fifth history item and you can now see that the highest number of SNPs per exon is 323.
+This will generate the fifth history item and you can now see that the highest number of SNPs per exon is 1149.
 
 ## Selecting top five 
 Now let's select top five exons with the highest number of SNPs.  
@@ -110,7 +110,7 @@ For this we will use "_**Text Manipulation**_ -> __Select first__ lines from a d
 Clicking **Execute** will produce the sixth history item that will contain just five lines.
 
 ## Recovering exon info and displaying data in genome browsers 
-Now we know that in this dataset the five top exons contain between 237 and 323 SNPs. But what else can we learn about these? To know more we need to get back the positional information (coordinates) of these exons. This information was lost at the grouping step and now all we have is just two columns. To get coordinates back we will match the names of exons in dataset #6 (column 1) against names of the exons in the original dataset #1 (column 4). This can be done with "_**Join, Subtract and Group**_ -> __Compare two Datasets__ to find common or distinct rows" tool (note the settings of the tool in the middle pane):
+Now we know that in this dataset the five top exons contain between 1149 and 720 SNPs. But what else can we learn about these? To know more we need to get back the positional information (coordinates) of these exons. This information was lost at the grouping step and now all we have is just two columns. To get coordinates back we will match the names of exons in dataset #6 (column 1) against names of the exons in the original dataset #1 (column 4). This can be done with "_**Join, Subtract and Group**_ -> __Compare two Datasets__ to find common or distinct rows" tool (note the settings of the tool in the middle pane):
 
 ![Compare](images/basic/compare.png)
 
@@ -161,13 +161,13 @@ The center pane will change as shown below and you will be able to choose which 
 
 ![Workflow](images/basic/createWorkflow.png)
 
-once you click Create Workflow you will get the following message: "Workflow 'galaxy101' created from current history". But where did it go? Click on Workflow link at the top of Galaxy interface and you will see a list of all workflows with "galaxy101" listed at the top:
+once you click Create Workflow you will get the following message: "Workflow 'galaxy101' created from current history". But where did it go? Click on _**Workflow**_ link at the top of Galaxy interface and you will see a list of all workflows with "galaxy101" listed at the top:
 
 ![Workflow](images/basic/workflowList.png)
 
 # Opening workflow editor 
 
-If you click on a triangle adjacent to the workflow's name you can click Edit and the workflow editor will launch. It will allow you to examine and change settings of this workflow as shown below. Note that the box corresponding to the "**Select First**" tool is selected (highlighted with the blue border) and you can see parameters of this tool on the right pane. This is how you can view and change parameters of all tools involved in the workflow.
+If you click on a triangle adjacent to the workflow's name you can click **Edit** and the workflow editor will launch. It will allow you to examine and change settings of this workflow as shown below. Note that the box corresponding to the "**Select First**" tool is selected (highlighted with the blue border) and you can see parameters of this tool on the right pane. This is how you can view and change parameters of all tools involved in the workflow.
 
 ![Workflow](images/basic/wfEditor.png)
 
