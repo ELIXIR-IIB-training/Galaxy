@@ -1,14 +1,14 @@
 ---
 
 layout: default
-title: Frontpage
+title: "ELIXIR-ITA: Galaxy tutorials"
 ---
 
 ## Welcome to our Galaxy training pages.
 
 Here you can find a collection of training resources for Galaxy courses.
 
- * [Galaxy first tutorial](basic.html) derived from [Galaxy 101](https://github.com/nekrut/galaxy/wiki/Galaxy101-1)
+ * [Galaxy Beginner's guide](basic.html) derived from [Galaxy 101](https://github.com/nekrut/galaxy/wiki/Galaxy101-1)
  * [Reads pre-processing, alignment and visualization](preprocessing.html)
  * [Exome Analysis](exome_analysis.html)
  * [Advanced Exome Analysis](exome_analysis_advanced.html)

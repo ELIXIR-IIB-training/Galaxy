@@ -1,7 +1,7 @@
 ---
 
 layout: default
-title: Basic
+title: "Galaxy tutorial: Beginner's guide"
 ---
 
 # Background

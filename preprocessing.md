@@ -1,7 +1,7 @@
 ---
 
 layout: default
-title: Reads pre-processing, alignment and visualization
+title: "Galaxy tutorial: Reads pre-processing, alignment and visualization"
 ---
 
 # PART I - Preprocessing and alignment
