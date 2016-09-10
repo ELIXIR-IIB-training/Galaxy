@@ -4,12 +4,11 @@ layout: default
 title: "Galaxy tutorial: Reads pre-processing, alignment and visualization"
 ---
 
-# PART I - Preprocessing and alignment
+# PART I - Pre-processing and alignment
+
 ---
 
 ## Step 1: Create a new (empty) history 
-
-
 
 Click on the history menu icon on the right column.  
 Select _Create New_ and rename it _sequence_align_ by clicking on the history name.  
@@ -17,43 +16,40 @@ If the current history is already empty, just rename it.
 
 <img src="images/preprocessing/create_history.png" title="New history" width="600" height="500" >
 
+----
 
 ## Step 2: Import read files 
 
 Galaxy offers multiple solutions for getting data: local files, FTP, external repositories and data sharing.
 In this training session, we are going to import data using **Shared Data**
 
-The files used during this session are contained into the **Quality control** dataset.
-
 Select **Data libraries** from the **Share Data** menu as shown in the figure below.
 
 ![Import data](images/preprocessing/shared_data.png)
 
+The files used during this session are contained into the **Quality control** folder inside the **Training** library
 
-Click on **Hands-on workshop** to get a list of the available files. Expand the Quality control dataset
-and select the files containing the paired reads **''input_mate1.fastq**'' and **''input_mate2.fastq**''.
+Expand the Quality control folder and select the files containing the paired reads **''input_mate1.fastq**'' and **''input_mate2.fastq**''.
 
-![QC dataset](images/preprocessing/shared_data.png)
+Locate the import button **to history** at the top of the page and click it.
 
-Locate the import button at the bottom of the page, select **import to current history** from the drop
-down menu and click **Go**
-
-![GO](images/preprocessing/import.png)
+![QC dataset](images/preprocessing/shared_data_2.png)
 
 
-**Return to _Analyze Data_.**
+Click on **_Analyze Data_** to return to your workspace.
 
-
+----
 
 ## Step 3: Sequence quality check 
 
 For each FastQ sequence, perform a quality check using FastQC
 
 
-select the **FastQC** tool under **NGS:Quality control**, choose the desired FastQ file and execute the job
+select the **FastQC** tool under **_NGS: Quality control_** menu, choose the desired FastQ file and execute the job
 
 ![QC](images/preprocessing/qc.png)
 
+----
 
 ## Step 4: Filtering and trimming 
 
@@ -67,45 +63,48 @@ View the **Per base sequence quality**
 
 **Trim the first 3 bases at 5' and 3' ends**
 
-Use the **FASTQ positional and quality trimming** tool to cut left/right sequence bases if they do not satisfy a minimal quality value (set by the user).
-After trimming, if the sequence is shorter then a given length it's removed from the the resulting FastQ file. Its mate sequence
-is removed too. Unpaired good sequences are kept in a separate file.
+Use the **FASTQ positional and quality trimming** tool in the _**NGS: Manipualtion**_ menu to cut left/right sequence bases if they do not satisfy a minimal quality value (set by the user).
 
-Select the paired-reads files and set the parameter values as follows
+Select the paired-reads files and set the parameter values as in the following image
 
 ![Trimming](images/preprocessing/trimm.png)
+
+**Tip:** After trimming, if the sequence is shorter then a given length it's removed from the the resulting FastQ file. Its mate sequence
+is removed too. Unpaired good sequences are kept in a separate file.
+
+
 
 ----
 
 ## Step 5: Sequence alignment 
 
-Use **BWA-MEM** to align the paired reads to the genome.
+We will use the **BWA-MEM** aligner to align the paired reads to the reference genome.
 
 
 ### Mapping reads with BWA-MEM 
 
 The next step is the alignment of the processed reads to the reference genome using BWA, a fast software package for mapping low-divergent sequences against a large reference genome, such as human.
  
- - Align the FASTQ files against the hg19 **Full** reference genome.
+ - Align the FASTQ files against the **hg19** reference genome.
  - **Is this library mate-paired?**: select ''Paired ends'' and choose the two filtered paired FastQ files 
 
 ![BWA-MEM](images/preprocessing/bwa-mem.png)
 
 
-The output of the analysis will be a file with the alignments in SAM format.
+<!--The output of the analysis will be a file with the alignments in SAM format.-->
 
-:information_source: Sequence Alignment/Map (SAM) format specification: [http://samtools.github.io/hts-specs/SAMv1.pdf](http://samtools.github.io/hts-specs/SAMv1.pdf)
+<!--:information_source: Sequence Alignment/Map (SAM) format specification: [http://samtools.github.io/hts-specs/SAMv1.pdf](http://samtools.github.io/hts-specs/SAMv1.pdf)-->
 
 
-## Step 6: Convert SAM to BAM 
+<!--## Step 6: Convert SAM to BAM -->
 
-Open the **SAM-to-BAM** tool under **NGS: SAM Tools**.
+<!--Open the **SAM-to-BAM** tool under **NGS: SAM Tools**.-->
 
-Choose the SAM alignment.
+<!--Choose the SAM alignment.-->
 
-Select hg19 **Full** as reference sequence and **execute**.
+<!--Select hg19 **Full** as reference sequence and **execute**.-->
 
-![SAM to BAM](images/preprocessing/sam-to-bam.png)
+<!--![SAM to BAM](images/preprocessing/sam-to-bam.png)-->
 
 
 
