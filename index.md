@@ -4,7 +4,7 @@ layout: default
 title: "ELIXIR-ITA: Galaxy tutorials"
 ---
 
-## Welcome to our Galaxy training pages.
+# Welcome to our Galaxy training pages.
 
 Here you can find a collection of training resources for Galaxy courses.
 
@@ -13,19 +13,19 @@ Here you can find a collection of training resources for Galaxy courses.
  * [Exome Analysis](exome_analysis.html)
  * [Advanced Exome Analysis](exome_analysis_advanced.html)
 
-### Datasets
+## Datasets
 
  * [Training material for the "Pre-processing tutorial"](data/preprocessing.tar.gz)
  * [Training material for the course "Exome analysis with GALAXY"](https://zenodo.org/record/61377)
 
-### Authors and Contributors
+## Authors and Contributors
 
  * Paolo Uva @puva
  * Gianmauro Cuccuru @gmauro
  * Massimiliano Orsini
  * Andrea Sbardellati
 
-### Contributing
+## Contributing
 
 If you've created a tutorial, slides or any other kind of material you think should be shared through this repository you can:
 
