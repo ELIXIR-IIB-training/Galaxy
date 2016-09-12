@@ -81,7 +81,7 @@ If you have trouble running a tool, you can directly download the output files f
 
 ### Connect to Galaxy and load data
 
-1. Connect to http://90.147.170.113/
+1. Connect to [{{ site.galaxy_url }}]({{ site.galaxy_url }})
 1. On the upper panel select **Shared Data > Data Libraries > Training > Input**
 1. Select all the files
 1. Import them to histories -> Destination Histories: -> New history named: e.g. `Workshop: Exome`.
