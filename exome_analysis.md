@@ -1,7 +1,7 @@
 ---
 
 layout: default
-title: Exome Sequencing Analysis
+title: Exome Sequencing Analysis using Galaxy
 ---
 
 Exome Sequencing Analysis using Galaxy
@@ -18,17 +18,17 @@ It is estimated that the protein coding regions of the human genome constitute a
 [Choi et al., 2009].
 
 
-![Exome sequencing-Part 1](/galaxy-training/images/exome/Exome_Sequencing_Workflow_1a.png)
+![Exome sequencing-Part 1](images/exome/Exome_Sequencing_Workflow_1a.png)
 **Figure 1.** Exome sequencing workflow: Part 1. Double-stranded genomic DNA is fragmented by sonication.
 Linkers are then attached to the DNA fragments, which are then hybridized to a capture microarray designed to target only the exons.
 
-![Exome sequencing-Part 2](/galaxy-training/images/exome/Exome_Sequencing_workflow_1b.png)
+![Exome sequencing-Part 2](images/exome/Exome_Sequencing_workflow_1b.png)
 **Figure 2.** Exome sequencing workflow: Part 2. Target exons are enriched, eluted and then amplified by ligation-mediated PCR.
 Amplified target DNA is then ready for high-throughput sequencing.
 
 # Tutorial
 
-![Exome analysis workflow](/galaxy-training/images/exome/ExomePipeline.png)
+![Exome analysis workflow](images/exome/ExomePipeline.png)
 
 ## Before starting
 

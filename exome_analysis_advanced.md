@@ -1,7 +1,7 @@
 ---
 
 layout: default
-title: Exome Sequencing Analysis - Advanced
+title: Exome Sequencing Analysis using Galaxy - Advanced
 ---
 
 Advanced Exome Analysis using Galaxy
