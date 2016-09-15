@@ -111,18 +111,23 @@ the INFO column of multiple VCF files.
 Let's assume you want to annotate which variants in your set are present in NCBI ClinVar,
 a database of variants of clinical relevance. To do that, execute **GATK Variant annotator** as follows:
 
- * Copy to your current history **clinvar_YYYYMMDD_hg19.vcf''' file (from **Data Libraries -> Training -> Input**) [FIXME]
+ * Copy to your current history **clinvar_20160831.hg19.vcf** (from **Data Libraries -> Training -> Input**)
  * Run **GATK Variant Annotator** with the following parameters:
-  * Variant file to annotate: your VCF to annotate
-  * Using reference genome: `hg19`
-  * Provide a dbSNP Reference-Ordered Data (ROD) file: **don't set dbSNP** (reduces the computation time)
-  * Binding for reference-ordered resource data:
-   * ROD file: your VCF with annotations - `clinvar_YYYYMMDD_hg19.vcf`
-   * ROD name: a shortname for this file to be used in the next step (no spaces allowed) - `clinvar`
-  * Expressions: to annotate with the CLNSIG (Variant Clinical Significance, from 0 to 7) and CLNDBN (Variant disease name) parameters from ClinVar, enter the two following expressions:
-   * `clinvar.CLNSIG`
-   * `clinvar.CLNDBN`
-  * Choose the bed file with target regions: add `NexteraRapidCaptureExpandedExome_Target.hg19.chr8.padding200.bed` in 
+ 
+   * Choose the reference genome from the history: `hg19_chr8.fa`
+   * Variant file to annotate: your VCF from Unified Genotyper
+   * Provide a dbSNP Reference-Ordered Data (ROD) file: **don't set dbSNP** (reduces the computation time)
+   * Binding for reference-ordered resource data:
+
+     * ROD file: `clinvar_YYYYMMDD_hg19.vcf`
+     * ROD name: a shortname to be used in the next step (no spaces allowed) - `clinvar`
+
+   * Expressions: to annotate with the CLNSIG (Variant Clinical Significance, from 0 to 7) and CLNDBN (Variant disease name) parameters from ClinVar, enter the two following expressions:
+
+     * `clinvar.CLNSIG`
+     * `clinvar.CLNDBN`
+     
+   * Choose the bed file with target regions: add `NexteraRapidCaptureExpandedExome_Target.hg19.chr8.padding200.bed` in 
     **Advanced GATK options -> Operate on genomic interval**
 
 If you want to export the final VCF in a Excel-compatible file, run the **VCFtoTab-delimited** tool.
@@ -138,7 +143,7 @@ regions in consanguineous families. You can identify RoH in your family with the
 
 ### bedtools
 
-The bedtools utilities are a suite of tools for a wide-range of operations with genomic data. Using bedtools you can intersect, merge, count, complement, and shuffle genomic intervals from multiple file in different formats such as BAM, BED and VCF.
+The [bedtools](http://bedtools.readthedocs.io/en/latest/) utilities are a suite of tools for a wide-range of operations with genomic data. Using bedtools you can, for example, intersect, merge and count genomic intervals from files in different formats such as BAM, BED and VCF.
 
 **Question**:
 
