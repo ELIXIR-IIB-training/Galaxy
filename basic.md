@@ -30,6 +30,7 @@ You will see UCSC Table Browser interface appearing in your browser window:
 
 Make sure that your settings are exactly the same as shown on the screen, in particular:
  
+ * ***group*** should be set to **Gene and Genes prediction**
  * ***region*** you should select **position** and write **chr22** in the corresponding text field 
  * _**output format**_ should be set to **BED - browser extensible data** 
  * in _**Send output to**_ should be checked the option **Galaxy**  
@@ -38,7 +39,11 @@ Click the _**get output**_ button and you will see the next screen:
 
 ![UCSC genes](images/basic/ucscGenes2.png)
 
-here make sure _**Create one BED record per**_ is set to **Coding Exons** and then click **Send query to Galaxy** button.
+here make sure that 
+
+ * _**Create one BED record per**_ is set to **Coding Exons** 
+  
+then click the **Send query to Galaxy** button.
 
 After this you will see your first History item in Galaxy's right pane.
 It will go through grey (preparing) and yellow (running) states to become green.
@@ -62,10 +67,11 @@ click the _**get output**_ button  and you should see this:
 
 where you need to make sure that **Whole Gene** is selected ("Whole Gene" here really means "Whole Feature") and click the _**Send query to Galaxy**_ button. You will get your second item in the history.
 
-### Renaming items 
+## Renaming items 
 Now we will rename the two history items to **Exons** and **SNPs** by clicking on the Pencil icon adjacent to each item. In the same manner, we will rename history to **Galaxy 101** (or whatever you prefer) by clicking on **Unnamed history**.
 
-## Getting data from a Library 
+### Getting data from a Library 
+_This is an optional step_ just in case you have had  problem with two previous ones.
 Some files have been also stored in a data library for you. On the upper panel select _**Shared Data**_ > _**Data Libraries**_", then click on the **Basic** folder and select all the bed files to then import them in the current history.
 
 # Finding the exon with the highest number of SNPs 
