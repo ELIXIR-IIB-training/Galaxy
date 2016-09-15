@@ -196,7 +196,7 @@ specific metrics from an aligned SAM or BAM file.
 Parameters:
 
  * SAM/BAM dataset to generate statistics for: the output BAM file from **Mark Duplicates**
- * Bait intervals: Bait/probes genomic location: `NexteraRapidCaptureExpandedExome_Probes.hg19.chr8.HybridSelection`
+ * Bait intervals: Bait/probe genomic locations: `NexteraRapidCaptureExpandedExome_Probes.hg19.chr8.HybridSelection`
  * Target intervals: Regions targeted by the exome kit: `NexteraRapidCaptureExpandedExome_Target.hg19.chr8.HybridSelection`
 
 The output file has the following structure (from [Picard Documentation](https://broadinstitute.github.io/picard/command-line-overview.html)) :
@@ -320,10 +320,9 @@ Input files:
 
 You now have an analysis-ready BAM file (deduped, indel-realigned, and recalibrated) for the sample.
 
-The next steps of the analysis consist calling of the variants and filtering.
+Before the multi-sample variant calling you need to retrieve the BAM for the other samples you have not analyzed:
 
-:point_right: Import from **Data Libraries -> Training -> Results* the BAM files (from **Print Reads**) 
-for the other samples you have not analyzed.
+ * Import from **Data Libraries -> Training -> Results** the missing BAM files obtained with **Print Reads**. E.g: if you analyzed the FASTQ from the proband, you only need to copy the BAM of the parents.
 
 
 ### Step 8 - Unified Genotyper
