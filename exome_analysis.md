@@ -38,15 +38,15 @@ The following table lists the steps of the analysis and the corresponding tools.
 
 | Step | Tool | Description | Section |
 | --- | --- | --- | --- |
-| 1 | FastQC | Reads QC reports using FastQC | NGS: Quality control|
+| 1 | FastQC | FASTQ quality control | NGS: Quality control|
 | 2 | Map with BWA-MEM | Aligns reads | NGS: Mapping|
 | 3 | Mark Duplicate reads | Finds and marks duplicated reads | NGS: Picard |
 | 4 | Realigner Target Creator | Defines regions for indel realignment |  NGS: GATK2 |
 | 5 | Indel Realigner | Local realignment around indels | NGS: GATK2 |
-| 6 | Base Recalibrator | calculates covariates used to recalibrate base quality scores of reads | NGS: GATK2 |
-| 7 | Print Reads | adjust base quality scores using covariates from Base Recalibrator | NGS: GATK2 |
+| 6 | Base Recalibrator | Calculates covariates used to recalibrate base quality scores of reads | NGS: GATK2 |
+| 7 | Print Reads | Adjust base quality scores using covariates from Base Recalibrator | NGS: GATK2 |
 | 8 | Unified Genotyper | Variant calling | NGS: GATK2 |
-| 9 | Variant selection with KGGSeq| Uses KGGSeq to filter and prioritize variants | VCF Tools |
+| 9 | Variant selection with KGGSeq| Variant annotation and filtering | VCF Tools |
 
 ## Input Files
 
@@ -57,7 +57,7 @@ To reduce the computation time, we preselected the reads mapping mostly to chrom
 
 Input data are also available at [Zenodo](https://zenodo.org/record/61377)
 
-Data used in this tutorial:
+**Data used in this tutorial:**
 
 | Name  | Description |
 | --- | --- |
@@ -86,15 +86,13 @@ If you have trouble running a tool, you can directly download the output files f
 1. Select all the files
 1. Import them to histories -> Destination Histories: -> New history named: e.g. `Workshop: Exome`.
 
-Now, on the upper panel click on Analyze data, then click on history's option on the top of the right menu
+Now, on the upper panel click on **Analyze data**, then click on history's option on the top of the right menu
 and select the above-mentioned history among the Saved Histories.
 Then, in the right panel you will find the imported datasets to use in the next steps of the analysis.
 
-:point_right: **Run steps 1-7 with only one sample**
-For the practical, we suggest to run the steps from 1 to 7 using only one sample (i.e. father, mother or proband).
-Then, before step 8 (variant calling) you will retrieve the missing BAMs from:
-**Shared Data -> Data library -> Training -> Results -> Print Reads - ...**.
-
+| IMPORTANT | Run steps 1-7 with only one sample |
+| --- | --- |
+|  | For the practical, we suggest to run the steps from 1 to 7 using only one sample (i.e. father, mother or proband). Then, before step 8 (variant calling) you will retrieve the missing BAMs from: **Shared Data -> Data library -> Training -> Results -> Print Reads - ...** |
 
 ### Step 1 - Quality check
 
@@ -107,8 +105,8 @@ As an example, check the quality of a couple of your FASTQ files:
 1. From the drop-down list select one of the FASTQ files
 
 **Question**:
- * :question: Looking at QC results, do you think is it necessary to perform a trimming/filtering step?
-   If yes, you could try **FASTQ positional and quality trimming**.
+
+ * Looking at QC results, do you think is it necessary to perform a trimming/filtering step?
 
 ### Step 2 - Mapping reads with BWA-MEM
 
@@ -128,33 +126,37 @@ a fast software package for mapping low-divergent sequences against a large refe
   - Sample (SM): `father` (this will be the column name in the final VCF file)
 
    ...and for the mother:
+   
   - Read group identiﬁer (ID): `FC1.L1.mother`
   - Platform/technology used to produce the reads (PL): `ILLUMINA`
   - Library name (LB): `Lib2`
   - Sample (SM): `mother`
 
    ...and for the proband:
+   
   - Read group identiﬁer (ID): `FC1.L1.proband`
   - Platform/technology(PL): `ILLUMINA`
   - Library name (LB): `Lib3`
   - Sample (SM): `proband`
 
-The output of the analysis will be a file with the alignments in BAM binary format.
+BWA-MEM generates an alignment is a file in SAM format, which is automagically converted in binay BAM format in Galaxy.
 
 ## From Alignment to Base quality recalibration
 
 ### Step 3 - Mark duplicates
 
-The MarkDuplicates tool from the Picard suite is important in removing PCR duplicates, which can introduce bias during variant calling.
-If you did not mark duplicates, you would risk having over-representation in your sequence of areas preferentially amplified during PCR. One way to think about it is that marking duplicates and removing them does not really have a detrimental effect on your overall depth of coverage, but increases the quality/reliability of the areas you have covered.
-Briefly, duplicately sequenced molecules shouldn't be counted as additional evidence for or against a putative variant.
-By marking these reads as duplicates the algorithms in the GATK know to ignore them. 
+The MarkDuplicates tool from the Picard suite is important in removing PCR duplicates, which can introduce bias during variant calling. If you did not mark duplicates, you would risk having over-representation in your sequence of areas preferentially amplified during PCR.
+
+One way to think about it is that marking duplicates and removing them does not really have a detrimental effect on your overall depth of coverage, but increases the quality/reliability of the areas you have covered.
+
+Briefly, duplicately sequenced molecules shouldn't be counted as additional evidence for or against a putative variant. By marking these reads as duplicates the algorithms in the GATK know to ignore them. 
 
 This tool takes as input the BAM file and returns a BAM file with the flag modified for duplicated reads.
 
-One of the parameters requires a regular expression for the extraction, from the read name,
-of the tile number within the flowcell lane, x coordinate and y coordinate.
+One of the parameters requires a regular expression to extract from the read name,
+the tile number within the flowcell lane, x and y coordinates.
 These values are used to estimate the rate of optical duplication in order to give a more accurate estimated library size.
+
 The regular expression should contain three capture groups, identified by parenthesis, for the three variables
 (tile number within the flowcell lane, x coordinate and y coordinate).
 
@@ -176,6 +178,7 @@ where:
 then the regular expression is: `[a-zA-Z0-9]+:[0-9]+:[a-zA-Z0-9]+:[0-9]:([0-9]+):([0-9]+):([0-9]+).*`
 
 Set the parameters as follow:
+
 - **DO NOT** remove duplicates from output file
 - Assume reads are already ordered - faster as it assumes that the BAM is already sorted
 - Regular expression for parsing read names: `[a-zA-Z0-9]+:[0-9]+:[a-zA-Z0-9]+:[0-9]:([0-9]+):([0-9]+):([0-9]+).*`
@@ -191,11 +194,12 @@ specific metrics from an aligned SAM or BAM file.
 | SAM/BAM Hybrid Selection Metrics for targeted resequencing data | Compute several statistics for targeted resequencing data (i.e. exome) | Output from MarkDuplicate, files with bait and target regions | File with metrics (% on-target, % off-target, etc) |
 
 Parameters:
- * SAM/BAM dataset to generate statistics for: the output BAM file from **Mark Duplicates**
- * Bait intervals: Sequences for bait in the design: We have not the bait intervals so, set `NexteraRapidCaptureExpandedExome_Probes.hg19.chr8.HybridSelection`
- * Target intervals: Sequences for targets in the design: `NexteraRapidCaptureExpandedExome_Target.hg19.chr8.HybridSelection`
 
-Output legend (from [Picard Documentation](https://broadinstitute.github.io/picard/command-line-overview.html)) :
+ * SAM/BAM dataset to generate statistics for: the output BAM file from **Mark Duplicates**
+ * Bait intervals: Bait/probes genomic location: `NexteraRapidCaptureExpandedExome_Probes.hg19.chr8.HybridSelection`
+ * Target intervals: Regions targeted by the exome kit: `NexteraRapidCaptureExpandedExome_Target.hg19.chr8.HybridSelection`
+
+The output file has the following structure (from [Picard Documentation](https://broadinstitute.github.io/picard/command-line-overview.html)) :
 
 | Field | Description |
 | --- | --- |
@@ -238,9 +242,10 @@ Output legend (from [Picard Documentation](https://broadinstitute.github.io/pica
 | GC_DROPOUT | A measure of how undercovered >= 50% GC regions are relative to the mean. For each GC bin [50..100] we calculate a = % of target territory, and b = % of aligned reads aligned to these targets. GC DROPOUT is then abs(sum(a-b when a-b < 0)). E.g. if the value is 5% this implies that 5% of total reads that should have mapped to GC>=50% regions mapped elsewhere |
 
 **Questions**:
- * :question: How many duplicates (percentage) there are marked? [ (1 - PCT_PF_UQ_READS) * 100 ]
- * :question: Which is the average bait and target coverage? 
- * :question: How many target bases present a coverage equal or greater than 30X? [PCT_TARGET_BASES_30X]
+
+ * How many duplicates (percentage) there are marked? [ (1 - PCT_PF_UQ_READS) * 100 ]
+ * Which is the average bait and target coverage? 
+ * How many target bases present a coverage equal or greater than 30X? [PCT_TARGET_BASES_30X]
 
 ## Indel realignment
 
@@ -251,17 +256,17 @@ Unlike most mappers, this tool uses the full alignment context to determine whet
 reference (i.e. indel) exists.
 
 This analysis consists in a 2-steps procedure:
+
  1. **NGS: GATK2 -> Realigner Target Creator**: Determining (small) suspicious intervals which are likely in need of realignment
  1. **NGS: GATK2 -> Indel Realigner**: Running the realigner over those intervals
-
-More in details:
 
 ### Step 4 - Realigner Target Creator
 
 Creates a file with the regions to be realigned. Here we will only select the BAM file, but additional files can be provided
 (e.g. VCF files included in the GATK Bundle with validated indels).
 
-Takes as input:
+Input files:
+
   * Choose the reference genome from the history: `hg19_chr8.fa`
   * The BAM file from the **Mark Duplicates** step
   * Choose the bed file with target regions: add `NexteraRapidCaptureExpandedExome_Target.hg19.chr8.padding200.bed` in 
@@ -270,7 +275,8 @@ Takes as input:
 
 ### Step 5 - Indel Realigner
 
-Takes as input:
+Input files:
+
   * Choose the reference genome from the history: `hg19_chr8.fa`
   * The BAM file from the **Mark Duplicates** step
   * Intervals provided by Realigner Target Creator to restrict the realignment
@@ -284,11 +290,14 @@ therefore errors and indicative of poor base quality.
 Then generates tables based on various user-specified covariates (such as read group, reported quality score, cycle, and context).
 Since there is a large amount of data one can then calculate an empirical probability of error given the particular covariates
 seen at this site, where p(error) = num mismatches / num observations.
+
 The output file is a table of the several covariate values, num observations, num mismatches, empirical quality score.
+
 Note: ReadGroupCovariate and QualityScoreCovariate are required covariates and will be added for the user 
 regardless of whether or not they were specified.
 
-Takes as input:
+Input files:
+
   * Choose the reference genome from the history: `hg19_chr8.fa`
   * the BAM file from the **Indel Realigner**
   * add a "Known Variants" > `dbsnp_138.hg19.chr8.vcf`
@@ -299,17 +308,19 @@ Takes as input:
 
 Given a BAM file, it writes a BAM with recalibrated base qualities as output.
 
-Takes as input:
+Input files:
+
   * Covariates table recalibration file from **Base Recalibrator**
   * Choose the reference genome from the history: `hg19_chr8.fa`
   * The BAM file from the **Indel Realigner**
   * Choose the bed file with target regions: add `NexteraRapidCaptureExpandedExome_Target.hg19.chr8.padding200.bed` in 
     **Advanced GATK options -> Operate on genomic interval**
 
-## Variant calling
+## Variant calling and annotation
 
 You now have an analysis-ready BAM file (deduped, indel-realigned, and recalibrated) for the sample.
-The next steps of the analysis consist in calling of the variants and filtering.
+
+The next steps of the analysis consist calling of the variants and filtering.
 
 :point_right: Import from **Data Libraries -> Training -> Results* the BAM files (from **Print Reads**) 
 for the other samples you have not analyzed.
@@ -322,26 +333,29 @@ We will use GATK Unified Genotyper instead of GATK HaplotypeCaller (preferred) i
 However, the same procedure described here can be used for GATK HaplotypeCaller.
 
 Run the tool for the three samples with the following parameters:
+
  * Choose the reference genome from the history: `hg19_chr8.fa`
- * The father, mother and proband `BAM` from **Print Reads**
+ * The father, mother and proband `BAM` from **Print Reads** step
  * In **Provide a dbSNP Reference-Ordered Data (ROD) file**, select `dbsnp_138.hg19.chr8.vcf`
-* Choose the bed file with target regions: add `NexteraRapidCaptureExpandedExome_Target.hg19.chr8.padding200.bed` in 
-  **Advanced GATK options -> Operate on genomic interval**
+ * Choose the bed file with target regions: add `NexteraRapidCaptureExpandedExome_Target.hg19.chr8.padding200.bed` in **Advanced GATK options -> Operate on genomic interval**
 
 This tool will produce a raw VCF file with the variants (SNP and INDELs).
 
 **Questions**:
- * :question: **How many variants are called?** [TIP: expand the Unified Genotyper VCF in the history]
+
+ * **How many variants are called?** [TIP: expand the Unified Genotyper VCF in the history]
 
 ### Step 9 - Variant selection with KGGSeq
 
-Uses [[http://statgenpro.psychiatry.hku.hk/limx/kggseq/|KGGSeq]] to filter and prioritize variants.
+Uses KGGSeq software to filter and prioritize variants. KGGSeq is able to annotate and filter variants according to multiple criteria (i.e. variant quality, gene feature, allele frequency, genetic inheritance). A description of different parameters is available at the [KGGSeq documentation](http://statgenpro.psychiatry.hku.hk/limx/kggseq/).
 
-Takes as input:
+Input files:
+
  * VCF file from **Unified Genotyper**
  * Pedigree file
 
 Parameters -> choose your own parameters among:
+
   * variant quality filters
   * genotype quality filters
   * genetic inheritance
@@ -352,13 +366,15 @@ Parameters -> choose your own parameters among:
   * Add annotations
   
 **Questions**:
- * :question: Which variants have been selected? Check the **Variant selection** tabular output
- * :question: Which is the impact of the different criteria on the final number of variants? Check the Variant selection log file
+
+ * Which variants have been selected? Check the **Variant selection** tabular output
+ * Which is the impact of the different criteria on the final number of variants? Check the Variant selection log file
 
 ## Display results at UCSC
 
 Once identified a group of putative variants, display on UCSC your results:
-  * Expand in the history a final BAM (e.g. the output of **Print Reads** for the proband) and upload it on UCSC 
+
+  * Expand in the history a processed BAM (e.g. the output of **Print Reads** for the proband) and upload it on UCSC 
     by clicking **display at UCSC main**. You can upload all the trios BAM files in the same way.
   * Insert the candidate gene name in the search field on the top of the page, or even better the chromosome and the StartPosition showed in the *Variant selection* tabular output
   * On the UCSC page, in the **Custom Tracks** menu, set `full` for each of the 3 tracks and click on `refresh` to get an idea about the coverage in that region and visualize the candidate variant.
