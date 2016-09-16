@@ -52,11 +52,17 @@ These files are freely available from the vendor sites.
 * Were most reads properly paired?
 * Did you notice any GC bias in sequencing depth? Check both pdf and stats (GCBiasMSE, GC Bias Mean Squared Error) from QPLOT.
 
-### Quickly examine your VCF file
+### Quickly examine your VCF and BAM file
 
-VCF files stored in Galaxy can be rapidly analyzed with [vcf.iobio.io](http://vcf.iobio.io/), a variant data inspector
-tool that quickly samples vcf files and visualizes a series of metrics.
-In the Galaxy history, click the **display at vcf.iobio vcf.iobio.io** link.
+The next Galaxy release will include two direct links to quickly display VCF and BAM file at [iobio.io](http://iobio.io/applications.html), a platform for immediate visual feedback of complex genomic datasets.
+
+In the meantime, you can display your data at iobio.io as follows:
+
+* Send your VCF or BAM file to UCSC using the **display at UCSC main** link
+* Go to UCSC, and select **manage custom tracks** button
+* Click on the dataset name and copy the URL of the dataset (e.g. http:<i></i>//90.147.170.113/display_application/ddf83cf807e6e774/ucsc_vcf/main/23701f153218a357/data/galaxy_ddf83cf807e6e774.vcf.gz)
+* Go to [vcf.iobio.io](http://vcf.iobio.io/) or [bam.iobio.io](http://bam.iobio.io/) and paste the URL
+
 
 ### Flag low quality variants
 
