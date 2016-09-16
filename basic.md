@@ -43,7 +43,8 @@ here make sure that
 
  * _**Create one BED record per**_ is set to **Coding Exons** 
   
-then click the **Send query to Galaxy** button.
+then click the **Send query to Galaxy** button.  
+(_Don't worry and continue if your browser show a message about an insecure connection_)
 
 After this you will see your first History item in Galaxy's right pane.
 It will go through grey (preparing) and yellow (running) states to become green.
@@ -71,7 +72,7 @@ where you need to make sure that **Whole Gene** is selected ("Whole Gene" here r
 Now we will rename the two history items to **Exons** and **SNPs** by clicking on the Pencil icon adjacent to each item. In the same manner, we will rename history to **Galaxy 101** (or whatever you prefer) by clicking on **Unnamed history**.
 
 ### Getting data from a Library 
-_This is an optional step_ just in case you have had  problem with two previous ones.
+_This is an optional step just in case you have had  problem with the two previous ones._  
 Some files have been also stored in a data library for you. On the upper panel select _**Shared Data**_ > _**Data Libraries**_", then click on the **Basic** folder and select all the bed files to then import them in the current history.
 
 # Finding the exon with the highest number of SNPs 
@@ -89,7 +90,7 @@ Make sure your exons are first and SNPs are second and click "Execute". You will
 |chr22 | 16287253  |  16287390  | uc002zlj.1_cds_8_0_chr22_16287254_r | 0  | -  | chr22 |  16287371  |  16287372 |   rs201840700  |   0  |   + |
 
 
-The first six columns come from the exon dataset, the last six from the SNPs.
+The first six columns come from the exon dataset, the last six from the SNPs. Depending on databases used, values on the table can be different.
 
 ## Counting the number of SNPs per exon 
 Above we've seen that exon uc002zlj.1_cds_4_0_chr22_16277748_r is repeated four times in the above dataset. Thus we can easily compute the number of SNPs per exon by simply counting the number of repetitions of name for each exon. This can be easily done with the "_**Join, Subtract, and Group**_ -> **Group** data by a column and perform aggregate operation on other columns" tool.
@@ -124,7 +125,7 @@ Now we know that in this dataset the five top exons contain between 1149 and 720
 The best way to learn about these exons is to look at their genomic surrounding. There is really no better way to do this than using genome browsers. Because this analysis was performed on "standard" human genome, you can directly send your dataset to the **UCSC Genome Browser** by using the _**display at UCSC main**_ link.
 
 # Understanding histories 
-In Galaxy your analyses live in histories such as this one on the left. Histories can be very large, you can have as many histories as you want, and all history behavior is controlled by the Options button on the top of the History panel:
+In Galaxy your analyses live in histories, see the image. Histories can be very large, you can have as many histories as you need, and all history behavior is controlled by the Options menu (the gear icon) on the top of the History panel:
 
 ![History](images/basic/history.png)
 
@@ -135,14 +136,16 @@ You can share your Galaxy items--histories, workflows, visualizations, and pages
  * using email addresses to share with individual users
  * using a web link to share with anyone who knows the link
 
-All sharing is done by selecting 'Share or Publish' from the item's menu; selecting this option takes you to a page where you can enable the share.
+All sharing is done by selecting _**Share or Publish**_ from the item's menu; selecting this option takes you to a page where you can enable the share.
 
-## Sharing with Individual Users 
-Find the section titled '_Share <Item_type> with Individual Users._' To share with another Galaxy user, click on the button in this section and enter his/her email address. You can share the item with as many users as you want.
+### Sharing with Individual Users 
+Find the section titled '_Share <Item_type> with Individual Users._' to share with another Galaxy user; click on the button in this section and enter his/her email address.
+
+You can share the item with as many users as you want.
 
 ![Share](images/basic/share01.png)
 
-## Sharing via Web Link and Publishing an Item 
+### Sharing via Web Link and Publishing an Item 
 Find the section titled '_Making <Item_type> Accessible via Link and Publish It._' The buttons in this section enable you to make an item accessible via link and/or publish it. Items accessible via link can be viewed by anyone that knows the link, and you can share an item by giving the link to other people.
 
 Sharing items via link is especially useful if you don't want to require that the person you're sharing with have a Galaxy account or be logged into Galaxy. You can change the text of an item's link by clicking on the pencil next to the link and typing in new text.
@@ -178,28 +181,34 @@ If you click on a triangle adjacent to the workflow's name you can click **Edit*
 ![Workflow](images/basic/wfEditor.png)
 
 ## Hiding intermediate steps 
-Among multiple things you can do with workflows I will just mention one. When workflow is executed one is usually interested in the final product and not in the intermediate steps. These steps can be hidden by mousing over a small asterisk in the lower right corner of every tool box.
+Among multiple things you can do with workflows I will just mention this one.
+
+When workflow is executed one is usually interested in the final product and not in the intermediate steps. These intermediate steps can be hidden by mousing over a small asterisk in the lower right corner of every tool box.
+
+![Hidden step](images/basic/hidden_step.png)
+
+In the history, you will only the datasets on the right.
 
 ## Renaming inputs 
 Right now both inputs to the workflow look exactly the same. This is a problem as will be very confusing which input should be exons and which should be SNPs.
 
 The top input dataset (the one with the blue border) connects to the Join tool first, so it must correspond to the exon data. If you click on this box you will be able to rename the dataset in the right pane.
 
-Then click on the second input dataset and rename it "Features" (this would make this workflow a bit more generic, which will be useful later in this tutorial):
+Then click on the second input dataset and rename it "**Features**" (this would make this workflow a bit more generic, which will be useful later in this tutorial):
 
 ## Renaming outputs 
-Finally let's rename the workflow's output. For this click on the last dataset ("Compare two Queries") and in the Edit Step Actions dialogue box select "Rename Dataset". Click Create and call it something like "top 5 exons".
+Finally let's rename the workflow's output. For this click on the last dataset "**Compare two Datasets**" in the **Configure Output** dialogue box look for the "Rename Dataset" form . Put inside it something like "top 5 exons".
 
 ## Save! It is important... 
-Now let's save the changes we've made by clicking **Options** (top of the center pane) and selecting **Save**.
+Now let's save the changes we've made by clicking **the gear icon** on top of the center panel and selecting **_Save_**.
 
 # Run workflow on another chromosome 
 
-Now that you have a workflow, you can repeat the previous analysis on your chromosome of choice.
+Now that you have a workflow, you can repeat the previous analysis on another chromosome of your choice.
 
 ## Create a new history 
 
-Before we start let's create a new history by clicking Options and selecting Create New.
+Before we start let's create a new history by clicking on the **gear icon** and selecting _**Create New**_.
 
 ## Get Exons and SNPs 
 
@@ -207,9 +216,9 @@ Repeat the steps above but insert a different chromosome in the "position" field
 
 ## Start the Workflow 
 
-At this point you will have two items in your history - one with exons and one with SNPs. Even if the datasets are not green yet, you do not have to wait as Galaxy will automatically start jobs once uploads have ended. So nothing stops us from starting the workflow we have created. First, click on the Workflow link at the top of Galaxy interface, mouse over "galaxy101", and click on the arrow.
+At this point you will have two items in your history - one with exons and one with SNPs. Even if the datasets are not green yet, you do not have to wait as Galaxy will automatically start jobs once uploads have ended. So nothing stops us from starting the workflow we have created. First, click on the Workflow link at the top of Galaxy interface, mouse over "galaxy101", and click on _**Run**_.
 
-Center pane will change to allow you launching the workflow. Select appropriate datasets for Exon and  inputs as shown below, scroll down, and click Run workflow.
+Center panel will change to allow you launching the workflow. Select appropriate datasets for Exon and  inputs as shown below, scroll down, and click Run workflow.
 
 ![Workflow](images/basic/launchWorkflow.png)
 
@@ -217,4 +226,4 @@ Once workflow has started you will initially be able to see all its steps.
 
 ![Workflow](images/basic/launchedWorkflow.png)
 
-Note that because all intermediate steps of the workflow were hidden, once it is finished you will only see the final dataset #7
+Note that because all intermediate steps of the workflow were _hidden_, once it is finished you will only see the final dataset #7

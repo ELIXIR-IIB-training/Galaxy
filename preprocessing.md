@@ -29,7 +29,9 @@ Select **Data libraries** from the **Share Data** menu as shown in the figure be
 
 The files used during this session are contained into the **Quality control** folder inside the **Training** library
 
-Expand the Quality control folder and select the files containing the paired reads **''input_mate1.fastq**'' and **''input_mate2.fastq**''.
+Expand the Quality control folder and select the files containing the paired reads:
+ * **''input_mate1.fastq**''  
+ * **''input_mate2.fastq**''
 
 Locate the import button **to history** at the top of the page and click it.
 
@@ -84,6 +86,8 @@ We will use the **BWA-MEM** aligner to align the paired reads to the reference g
 ### Mapping reads with BWA-MEM 
 
 The next step is the alignment of the processed reads to the reference genome using BWA, a fast software package for mapping low-divergent sequences against a large reference genome, such as human.
+
+Select _**MAP with BWA-MEM**_ tool from the **NGS: Mapping** menu
  
  - Align the FASTQ files against the **hg19** reference genome.
  - **Is this library mate-paired?**: select ''Paired ends'' and choose the two filtered paired FastQ files 
@@ -108,10 +112,10 @@ The next step is the alignment of the processed reads to the reference genome us
 
 
 
-## Step 7: Display BAM data using the UCSC Genome Browser 
+## Step 6: Display BAM data using the UCSC Genome Browser 
 
 
-Select a bam output of **SAM to BAM** tool and choose the option ''Display at UCSC main''.
+Select the bam output of **Map with BWA-MEMM** tool and choose the option _**Display at UCSC main**_.
 
 
 ![Send to UCSC](images/preprocessing/ucsc_viewer.png)
@@ -132,7 +136,7 @@ Zoom-in at the level of a single exon and you should see the read pairs properly
 ## Part II - Building and running a workflow
 ---
 
-## Step 8: Extract a workflow from history 
+## Step 7: Extract a workflow from history 
 
 Open the history menu and click on **Extract Workflow**
 
@@ -142,7 +146,7 @@ Rename your workflow "bwa_align" and click on ![Button](images/preprocessing/cre
 
 ![Create workflow](images/preprocessing/create_workflow.png)
 
-## Step 9: Edit workflow 
+## Step 8: Edit workflow 
 
 Select the **Workflow** tab in the galaxy menu bar.
 
@@ -161,7 +165,7 @@ will be displayed in your history by checking the proper **check boxes**.
 
 ### Save and Run your workflow 
 
-Now can save your wokflow and  it again (using the top right menu)
+Now can save your wokflow and run it again (using the top right menu)
 
 
 **Run window**
