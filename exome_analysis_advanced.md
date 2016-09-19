@@ -147,10 +147,11 @@ regions in consanguineous families. You can identify RoH in your family with the
  * KGGSeq - Input: VCF and pedigree. Open section **Specify homozygosity filters**, and enter a value (i.e. `10`, corresponding to 10Kb) for **Filter by Runs of Homozygosity (ROH)**.
    The software will return only the variants located in a RoH with length greater than this value. In the **tabular** output the last two columns contain the number of SNPs and length of the RoH. 
 
-### bedtools
+### Bedtools
 
 The [bedtools](http://bedtools.readthedocs.io/en/latest/) utilities are a suite of tools for a wide-range of operations with genomic data. Using bedtools you can, for example, intersect, merge and count genomic intervals from files in different formats such as BAM, BED and VCF.
 
-**Question**:
+**Questions**:
 
  * Using **MultiCovBed** tool, count the number of reads mapped to ERICH1 gene
+ * Run **Compute both the depth and breadth of coverage** tool, and identify target regions which are not completely covered by reads 
